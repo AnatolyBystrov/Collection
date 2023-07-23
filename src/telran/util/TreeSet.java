@@ -53,7 +53,6 @@ private static class Node<T> {
 	public TreeSet() {
 		this((Comparator<T>)Comparator.naturalOrder());
 	}
-	@Override
 	public T get(Object pattern) {
 		Node<T> node = getNode((T)pattern);
 		T res = null;
