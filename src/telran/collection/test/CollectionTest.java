@@ -1,5 +1,4 @@
-package telran.util.test;
-
+package telran.collection.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
@@ -10,12 +9,13 @@ import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import telran.util.Collection;
+import telran.collection.Collection;
 
 abstract class CollectionTest {
 Integer [] numbers = {10, -20, 8, 14, 30, 12, 100};
-static final int N_BIG_NUMBERS = 100_000;
+static final int N_BIG_NUMBERS = 100_00;
 static final int N_RUNS = 1000;
+private static final int N_RUNS_CONTAINS = 100_000;
 protected Collection<Integer> collection;
 	@BeforeEach
 	void setUp()  {
@@ -28,20 +28,18 @@ protected Collection<Integer> collection;
 	abstract void addTest();
 	 @Test
 	 void removeTest() {
-		    Integer[] expected1 = {10, 8, 14, 30, 12, 100};
-		    Integer[] expected2 = {10, 8, 14, 30, 12};
-		    Integer[] expected3 = {10, 8, 30, 12};
-		    
-		    assertTrue(collection.remove(10));
-		    runArrayTest(expected1, collection.toArray(new Integer[collection.size()]));
-		    assertTrue(collection.remove(100));
-		    runArrayTest(expected2, collection.toArray(new Integer[collection.size()]));
-		    assertTrue(collection.remove(14));
-		    runArrayTest(expected3, collection.toArray(new Integer[collection.size()]));
-		    assertFalse(collection.remove(100000));
-		    runArrayTest(expected3, collection.toArray(new Integer[collection.size()]));
-		}
-
+		 Integer[] expected1 = {-20, 8, 14, 30, 12, 100};
+		 Integer[] expected2 = {-20, 8, 14, 30, 12};
+		 Integer[] expected3 = {-20, 8,  30, 12};
+		 assertTrue(collection.remove(10));
+		 runArrayTest(expected1, collection.toArray(new Integer[0]));
+		 assertTrue(collection.remove(100));
+		 runArrayTest(expected2, collection.toArray(new Integer[0]));
+		 assertTrue(collection.remove(14));
+		 runArrayTest(expected3, collection.toArray(new Integer[0]));
+		 assertFalse(collection.remove(100000));
+		 runArrayTest(expected3, collection.toArray(new Integer[0]));
+	 }
 	 @Test
 	 void clearTest() {
 		 collection.clear();
@@ -106,12 +104,22 @@ protected Collection<Integer> collection;
 		
 	 }
 	 @Test
+	 void containsPerformanceTest() {
+		 Integer[] bigArray = getBigArray();
+		 Collection<Integer> bigCollection = getCollection(bigArray);;
+		 for(int i = 0; i < N_RUNS_CONTAINS; i++) {
+			  bigCollection.contains(1000);
+		 }
+		 
+		
+	 }
+	 @Test
 	 void iteratorTest() {
 		 Iterator<Integer> it = collection.iterator();
 		 while(it.hasNext()) {
 			 it.next();
 		 }
-		 assertThrowsExactly(NoSuchElementException.class, ()->it.next());
+		 assertThrows(NoSuchElementException.class, ()->it.next());
 	 }
 
 	private Integer[] getBigArray() {

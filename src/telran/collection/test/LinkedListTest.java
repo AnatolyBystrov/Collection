@@ -1,9 +1,9 @@
-package telran.util.test;
+package telran.collection.test;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import telran.util.Collection;
-import telran.util.LinkedList;
+import telran.collection.Collection;
+import telran.collection.LinkedList;
 
 public class LinkedListTest extends ListTest {
 	@Override

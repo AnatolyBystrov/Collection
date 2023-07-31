@@ -6,21 +6,23 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import telran.util.Collection;
-import telran.util.HashSet;
+import telran.collection.Collection;
+import telran.collection.HashSet;
+import telran.util.test.SetTest;
+
+
 
 public class HashSetTest extends SetTest {
 	@Override
 	@BeforeEach
 	void setUp() {
-	    collection = new HashSet<Integer>(7); 
-	    super.setUp();
+		collection = new HashSet<Integer>(3);
+		super.setUp();
 	}
-
 
 	@Override
 	protected Collection<Integer> getCollection(Integer[] ar) {
-		HashSet<Integer> res = new HashSet<>();
+		HashSet<Integer> res = new HashSet<>(200000);
 		for(Integer num: ar) {
 			res.add(num);
 		}

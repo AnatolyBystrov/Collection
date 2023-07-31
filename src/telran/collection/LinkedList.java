@@ -1,11 +1,14 @@
-package telran.util;
+package telran.collection;
 
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 public class LinkedList<T> implements List<T> {
-	private static class Node<T> {
+	 static class Node<T> {
 		T obj;
 		Node<T> next;
 		Node<T> prev;
@@ -16,7 +19,7 @@ public class LinkedList<T> implements List<T> {
 	Node<T> head;
 	Node<T> tail;
 	int size;
-	private class LinkedListIterator implements Iterator<T> {
+	 class LinkedListIterator implements Iterator<T> {
 		Node<T> current = head;
 		boolean flNext = false;
 			@Override
@@ -54,17 +57,16 @@ public class LinkedList<T> implements List<T> {
 		return true;
 	}
 
-	private void removeNode(Node<T> removedNode) {
-	    if (removedNode == head) {
-	        removeHead();
-	    } else if (removedNode == tail) {
-	        removeTail();
-	    } else {
-	        removeMiddle(removedNode);
-	    }
-	    size--;
+	 void removeNode(Node<T> removedNode) {
+		if(removedNode == head) {
+			removeHead();
+		} else if(removedNode == tail) {
+			removeTail();
+		} else {
+			removeMiddle(removedNode);
+		}
+		size--;
 	}
-
 
 	private void removeMiddle(Node<T> removedNode) {
 		Node<T> prevNode = removedNode.prev;
@@ -99,7 +101,7 @@ public class LinkedList<T> implements List<T> {
 		
 	}
 
-	private void addNode(int index, Node<T> node) {
+	 void addNode(int index, Node<T> node) {
 		
 		if(index == size) {
 			addTail(node);
@@ -130,16 +132,15 @@ public class LinkedList<T> implements List<T> {
 		
 	}
 
-	private void addTail(Node<T> node) {
-	    if (tail == null) {
-	        head = tail = node;
-	    } else {
-	        tail.next = node;
-	        node.prev = tail;
-	        tail = node;
-	    }
+	 void addTail(Node<T> node) {
+		if (tail == null) {
+			head = tail = node;
+		} else {
+			tail.next = node;
+			node.prev = tail;
+		}
+		tail = node;
 	}
-
 
 	@Override
 	public int size() {
@@ -167,7 +168,7 @@ public class LinkedList<T> implements List<T> {
 		return node.obj;
 	}
 
-	private Node<T> getNode(int index) {
+	 private Node<T> getNode(int index) {
 		
 		return index < size / 2 ? getNodeFromHead(index) : getNodeFromTail(index);
 	}
@@ -230,6 +231,100 @@ public class LinkedList<T> implements List<T> {
 		return current == null ? -1 : index;
 	}
 
-	
-}
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
+	@Override
+	public boolean contains(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> T[] toArray(T[] a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean remove(Object o) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean containsAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addAll(Collection<? extends T> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean addAll(int index, Collection<? extends T> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean retainAll(Collection<?> c) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int indexOf(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int lastIndexOf(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ListIterator<T> listIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListIterator<T> listIterator(int index) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<T> subList(int fromIndex, int toIndex) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

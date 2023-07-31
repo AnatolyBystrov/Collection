@@ -1,10 +1,11 @@
-package telran.util.test;
+package telran.collection.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import telran.collection.List;
 import telran.util.*;
 
 abstract class ListTest extends CollectionTest {
@@ -37,16 +38,16 @@ abstract class ListTest extends CollectionTest {
 		assertArrayEquals(expected2, list.toArray(new Integer[0]));
 		list.add(9, 10);
 		assertArrayEquals(expected3, list.toArray(new Integer[0]));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.add(11, 10));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.add(-1, 10));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.add(11, 10));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.add(-1, 10));
 	}
 	@Test
 	void getIndexTest() {
 		for (int i = 0; i < numbers.length; i++) {
 			assertEquals(numbers[i], list.get(i));
 		}
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.get(list.size()));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.get(-1));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.get(list.size()));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
 	}
 	@Test
 	void indexOfTest() {
@@ -70,8 +71,8 @@ abstract class ListTest extends CollectionTest {
 		assertArrayEquals(expected2, list.toArray(new Integer[0]));
 		list.remove(4);
 		assertArrayEquals(expected3, list.toArray(new Integer[0]));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.remove(4));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.remove(-1));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(4));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.remove(-1));
 	}
 	@Test
 	void setTest() {
@@ -81,8 +82,8 @@ abstract class ListTest extends CollectionTest {
 		assertEquals(10, list.get(0));
 		list.set(0, 33);
 		assertEquals(33, list.get(0));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.set(list.size(), 3));
-		assertThrowsExactly(IndexOutOfBoundsException.class, () -> list.set(-1, 3));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.set(list.size(), 3));
+		assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, 3));
 	}
 	@Override 
 	protected void runArrayTest(Integer[] expected, Integer[] actual) {

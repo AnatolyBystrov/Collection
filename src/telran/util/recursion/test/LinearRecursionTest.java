@@ -3,7 +3,6 @@ package telran.util.recursion.test;
 import static org.junit.jupiter.api.Assertions.*;
 import static telran.util.recursion.LinearRecursion.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class LinearRecursionTest {

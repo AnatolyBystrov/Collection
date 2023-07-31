@@ -1,4 +1,5 @@
-package telran.util;
+package telran.collection;
+
 
 import java.util.Arrays;
 import java.util.Iterator;
