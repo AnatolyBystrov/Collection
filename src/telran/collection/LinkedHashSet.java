@@ -1,50 +1,46 @@
 package telran.collection;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Set;
 
 import telran.collection.LinkedList.Node;
 
 public class LinkedHashSet<T> implements Set<T> {
-	HashMap<T, LinkedList.Node<T>> map = new HashMap<>();
+	HashMap<T, Node<T>> map = new HashMap<>();
 	LinkedList<T> list = new LinkedList<>();
-	
-
 	@Override
 	public boolean add(T obj) {
-		if (!map.containsKey(obj)) {
-			LinkedList.Node<T> newNode = new Node<>(obj);			
-			list.addTail(newNode);
-			list.size++;
-			map.put(obj, newNode);
-			return true;
+		boolean res = false;
+		if(!map.containsKey(obj)) {
+			res = true;
+			Node<T> node = new Node<>(obj);
+			map.put(obj, node);
+			list.addNode(list.size(), node);
 		}
-		return false;
+		return res;
 	}
-
-	
 
 	@Override
 	public boolean remove(Object pattern) {
-		LinkedList.Node<T> removedNode = map.get(pattern);
-		if (removedNode != null) {			
-			list.removeNode(removedNode);
-			map.remove(pattern);
-			return true;
+		boolean res = false;
+		
+		if(map.containsKey(pattern)) {
+			res = true;
+			Node<T> node = map.remove(pattern);
+			list.removeNode(node);
 		}
-		return false;
-			
+		return res;
 	}
 
 	@Override
 	public boolean contains(Object pattern) {
+		
 		return map.containsKey(pattern);
 	}
 
 	@Override
 	public int size() {
-		return  map.size();
+		
+		return list.size();
 	}
 
 	@Override
@@ -53,9 +49,13 @@ public class LinkedHashSet<T> implements Set<T> {
 		return list.iterator();
 	}
 
+	@Override
 	public T get(Object pattern) {
-		Node<T> resNode = map.get(pattern);
-		return resNode != null ? resNode.obj : null;
+		T res = null;
+		if(contains(pattern)) {
+			res = map.get(pattern).obj;
+		}
+		return res;
 	}
 
 }

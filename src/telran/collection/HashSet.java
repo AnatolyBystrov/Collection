@@ -1,13 +1,10 @@
 package telran.collection;
 
-
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.Set;
 
-public abstract class HashSet<T> implements Set<T> {
+public class HashSet<T> implements Set<T> {
 	private static final int DEFAULT_TABLE_LENGTH = 16;
 	private LinkedList<T>[] hashTable;
 	private float factor = 0.75f;
@@ -173,6 +170,7 @@ public abstract class HashSet<T> implements Set<T> {
 		return new HashSetIterator();
 	}
 
+	@Override
 	public T get(Object pattern) {
 		int index = getIndex(pattern);
 		T res = null;
@@ -189,4 +187,5 @@ public abstract class HashSet<T> implements Set<T> {
 		}
 		return res;
 	}
+
 }

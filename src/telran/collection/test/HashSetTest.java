@@ -1,4 +1,4 @@
-package telran.util.test;
+package telran.collection.test;
 
 import static org.junit.Assert.assertArrayEquals;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 
 import telran.collection.Collection;
 import telran.collection.HashSet;
-import telran.util.test.SetTest;
+import telran.collection.test.SetTest;
 
 
 
